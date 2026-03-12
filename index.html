@@ -14,6 +14,7 @@ body {
   background:linear-gradient(135deg,#ffe4f2,#f3e6ff);
   text-align:center;
   overflow-x:hidden;
+  position:relative;
 }
 
 .page {
@@ -82,15 +83,29 @@ button:hover {
   100%{transform:translateY(-10vh);}
 }
 
+.sound-icon {
+  position:fixed;
+  top:20px;
+  right:20px;
+  font-size:32px;
+  cursor:pointer;
+  color:#ff4d88;
+  z-index:1000;
+}
+
 @media(max-width:480px){
   h1 { font-size:28px; }
   p { font-size:16px; }
   button { font-size:16px; padding:10px 20px; }
+  .sound-icon { font-size:28px; }
 }
 </style>
 
 </head>
 <body>
+
+<!-- SOUND ICON -->
+<div class="sound-icon" id="soundIcon">🔊</div>
 
 <!-- BACKGROUND MUSIC -->
 <audio id="bgSong" loop>
@@ -185,46 +200,63 @@ main aapse door rehna nahi chahta.
 <button onclick="playDedicated()">Play A Song I Dedicated</button>
 </div>
 
-<!-- PAGE 7 FINAL -->
+<!-- PAGE 7 FOLLOW BACK -->
 <div class="page" id="page7">
 <h1>One Last Thing</h1>
 <p>
 Agar aap yahan tak letter parh chuki hain  
 toh shayad iska matlab hai ke aapne isey ignore nahi kiya.<br><br>
 Toh ek chhoti si request thi…<br><br>
-Kya follow back mil sakta hai?<br><br>
-Taa ke mujhe pata chal jaye  
-ke aap yahan tak poora letter parh chuki hain.
+Kya follow back mil sakta hai?
 </p>
-<button>Maybe 😊</button>
+<button id="maybeBtn">Maybe 😊</button>
+<button id="noBtn">No ❌</button>
+<div id="flirtyMsg" style="margin-top:20px; font-size:18px; color:#ff4d88;"></div>
 </div>
 
 <script>
+// PAGE NAVIGATION
 function nextPage(page){
-document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"))
-document.getElementById("page"+page).classList.add("active")
+  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"))
+  document.getElementById("page"+page).classList.add("active")
 }
 
-// Mobile autoplay workaround: start music after first touch
-document.body.addEventListener('click',()=>{
+// MOBILE AUTOPLAY: tap sound icon to start bg music
+document.getElementById('soundIcon').addEventListener('click',()=>{
   document.getElementById('bgSong').play();
-},{once:true})
+})
 
+// DEDICATED SONG
 function playDedicated(){
-document.getElementById("bgSong").pause()
-document.getElementById("dedicatedSong").play()
-nextPage(7)
+  document.getElementById("bgSong").pause()
+  document.getElementById("dedicatedSong").play()
+  nextPage(7)
 }
 
-// Floating hearts
+// FLOATING HEARTS
 for(let i=0;i<20;i++){
-let heart=document.createElement("div")
-heart.innerHTML="💖"
-heart.classList.add("heart")
-heart.style.left=Math.random()*100+"%"
-heart.style.fontSize=(20+Math.random()*20)+"px"
-document.body.appendChild(heart)
+  let heart=document.createElement("div")
+  heart.innerHTML="💖"
+  heart.classList.add("heart")
+  heart.style.left=Math.random()*100+"%"
+  heart.style.fontSize=(20+Math.random()*20)+"px"
+  document.body.appendChild(heart)
 }
+
+// FOLLOW BACK BUTTONS INTERACTION
+const noBtn=document.getElementById('noBtn')
+const maybeBtn=document.getElementById('maybeBtn')
+const flirtyMsg=document.getElementById('flirtyMsg')
+
+noBtn.addEventListener('click',()=>{
+  const moveX=Math.random()*60-30 // move left/right
+  const moveY=Math.random()*30-15
+  noBtn.style.transform=`translate(${moveX}px, ${moveY}px)`
+})
+
+maybeBtn.addEventListener('click',()=>{
+  flirtyMsg.innerText="Aww 🤭! Apne haan kaha… ab thoda shy feel ho raha hai!"
+})
 </script>
 
 </body>
