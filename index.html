@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>A Random Letter</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+margin:0;
+font-family:'Poppins',sans-serif;
+background:linear-gradient(135deg,#ffe4f2,#f3e6ff);
+text-align:center;
+overflow:hidden;
+}
+
+.page{
+display:none;
+padding:60px;
+max-width:700px;
+margin:auto;
+}
+
+.active{
+display:block;
+}
+
+h1{
+font-family:'Pacifico',cursive;
+color:#ff3e8e;
+font-size:42px;
+}
+
+p{
+font-size:20px;
+line-height:1.7;
+color:#444;
+}
+
+button{
+padding:12px 30px;
+font-size:18px;
+border:none;
+border-radius:30px;
+cursor:pointer;
+background:#ff4d88;
+color:white;
+margin-top:30px;
+transition:0.3s;
+}
+
+button:hover{
+transform:scale(1.05);
+}
+
+.gallery img{
+width:200px;
+margin:10px;
+border-radius:15px;
+box-shadow:0 10px 20px rgba(0,0,0,0.2);
+}
+
+.caption{
+font-size:16px;
+color:#ff4d88;
+margin-bottom:20px;
+}
+
+.heart{
+position:absolute;
+color:#ff8bb0;
+animation:float 8s linear infinite;
+}
+
+@keyframes float{
+0%{transform:translateY(100vh);}
+100%{transform:translateY(-10vh);}
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- BACKGROUND MUSIC -->
+<audio id="bgSong" autoplay loop>
+<source src="background.MP3">
+</audio>
+
+<!-- DEDICATED SONG -->
+<audio id="dedicatedSong">
+<source src="dedicated.MP3">
+</audio>
+
+<!-- PAGE 1 -->
+
+<div class="page active" id="page1">
+
+<h1>Hi Zaynab</h1>
+
+<p>
+Yeh letter thora sa random lag sakta hai…  
+lekin kabhi kabhi random cheezain hi interesting hoti hain.
+
+Honestly mujhe nahi pata ke aap mujhe notice karti hain ya nahi…  
+lekin maine aapko kaafi dafa notice kiya hai.
+
+Kabhi ground mein walk kartay huay,  
+kabhi corridor mein quietly chalti hui,  
+aur kabhi bench par apni friends ke sath beth kar baatein karti hui.
+
+Aur ek baat…
+
+Aapki eyes… honestly bohat hi zyada pyari hain.  
+Itni expressive ke mask ke bawajood bhi sab kuch keh deti hain.
+</p>
+
+<button onclick="nextPage(2)">Next</button>
+
+</div>
+
+<!-- PAGE 2 -->
+
+<div class="page" id="page2">
+
+<p>
+Ajeeb si baat hai…
+
+Pehle jab bhi aap bench par hoti thi  
+usually aapki friends aapke sath hoti thi.
+
+Lekin aaj kal aksar aap akeli hoti hain.
+
+Maybe kuch hua ho  
+ya maybe sirf coincidence ho.
+
+Bas umeed karta hoon ke sab theek ho.
+
+Aur ek funny si baat bhi notice ki hai…
+
+Mask shayad sab log safety ke liye pehente hain  
+lekin honestly lagta hai mask specially aapke liye design hua hai.
+
+Because even with the mask…  
+aapki eyes sab attention le leti hain.
+</p>
+
+<button onclick="nextPage(3)">Next</button>
+
+</div>
+
+<!-- PAGE 3 PHOTOS -->
+
+<div class="page" id="page3">
+
+<h1>Some Moments</h1>
+
+<div class="gallery">
+
+<img src="photo1.jpeg">
+<div class="caption">Kabhi kabhi lagta hai camera bhi confuse ho jata hoga… focus kahaan kare.</div>
+
+<img src="photo2.jpeg">
+<div class="caption">Ye wali photo honestly thori unfair hai… itni achi kyun hai?</div>
+
+<img src="photo3.jpeg">
+<div class="caption">Aapki eyes ka detail level honestly dangerous hai.</div>
+
+</div>
+
+<button onclick="nextPage(4)">Next</button>
+
+</div>
+
+<!-- PAGE 4 -->
+
+<div class="page" id="page4">
+
+<p>
+Ek random sa question…
+
+Kya aap doctor ban rahi hain  
+ya medical field mein ja rahi hain?
+
+Bas curiosity thi.
+</p>
+
+<button onclick="nextPage(5)">Yes</button>
+
+</div>
+
+<!-- PAGE 5 -->
+
+<div class="page" id="page5">
+
+<h1>Ek Confession 😅</h1>
+
+<p>
+Sach bataun?
+
+Maine apples khana chor diya hai.
+</p>
+
+<button onclick="nextPage(6)">Why?</button>
+
+</div>
+
+<!-- PAGE 6 -->
+
+<div class="page" id="page6">
+
+<p>
+Kyunki kehte hain...
+
+<b>"An apple a day keeps the doctor away."</b>
+
+Aur honestly...
+
+main aapse door rehna nahi chahta.
+</p>
+
+<button onclick="playDedicated()">Play A Song I Dedicated</button>
+
+</div>
+
+<!-- PAGE 7 FINAL -->
+
+<div class="page" id="page7">
+
+<h1>One Last Thing</h1>
+
+<p>
+Agar aap yahan tak letter parh chuki hain  
+toh shayad iska matlab hai ke aapne isey ignore nahi kiya.
+
+Toh ek chhoti si request thi…
+
+Kya follow back mil sakta hai?
+
+Taa ke mujhe pata chal jaye  
+ke aap yahan tak poora letter parh chuki hain.
+</p>
+
+<button>Maybe 😊</button>
+
+</div>
+
+<script>
+
+function nextPage(page){
+
+document.querySelectorAll(".page").forEach(p=>{
+p.classList.remove("active")
+})
+
+document.getElementById("page"+page).classList.add("active")
+
+}
+
+function playDedicated(){
+
+document.getElementById("bgSong").pause()
+document.getElementById("dedicatedSong").play()
+
+nextPage(7)
+
+}
+
+for(let i=0;i<20;i++){
+
+let heart=document.createElement("div")
+heart.innerHTML="💖"
+heart.classList.add("heart")
+heart.style.left=Math.random()*100+"%"
+heart.style.fontSize=(20+Math.random()*20)+"px"
+
+document.body.appendChild(heart)
+
+}
+
+</script>
+
+</body>
+</html>
